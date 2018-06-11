@@ -22,5 +22,11 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Roadmunk/eslint-plugin-roadmunk"
+  },
+  "homepage": "https://github.com/Roadmunk/eslint-plugin-roadmunk#readme",
+  "bugs": "https://github.com/Roadmunk/eslint-plugin-roadmunk/issues"
 }
