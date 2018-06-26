@@ -88,14 +88,14 @@ ruleTester.run("no-lodash-undefined", rule, {
             output: "test = false === undefined ? 1 : 2",
         },
         {
-            code: "var condition = null; test = _.isUndefined(condition) ? 1 : 2",
+            code: "var condition = undefined; test = _.isUndefined(condition) ? 1 : 2",
             errors,
-            output: "var condition = null; test = condition === undefined ? 1 : 2",
+            output: "var condition = undefined; test = condition === undefined ? 1 : 2",
         },
         {
-            code: "var condition = null; test = !_.isUndefined(condition) ? 1 : 2",
+            code: "var condition = undefined; test = !_.isUndefined(condition) ? 1 : 2",
             errors,
-            output: "var condition = null; test = condition !== undefined ? 1 : 2",
+            output: "var condition = undefined; test = condition !== undefined ? 1 : 2",
         },
         {
             code: "var condition = {}; test = _.isUndefined(condition) ? 1 : 2",
@@ -139,24 +139,24 @@ ruleTester.run("no-lodash-undefined", rule, {
             output: "obj = { method1 : function(){ [1,2] === undefined ? 1 : 2 } }",
         },
         {
-            code: "obj = { method1: null, method2 : function(){ _.isUndefined(this.method1) ? 1 : 2 } }",
+            code: "obj = { method1: undefined, method2 : function(){ _.isUndefined(this.method1) ? 1 : 2 } }",
             errors,
-            output: "obj = { method1: null, method2 : function(){ this.method1 === undefined ? 1 : 2 } }",
+            output: "obj = { method1: undefined, method2 : function(){ this.method1 === undefined ? 1 : 2 } }",
         },
         {
-            code: "obj = { method1: null, method2 : function(){ !_.isUndefined(this.method1) ? 1 : 2 } }",
+            code: "obj = { method1: undefined, method2 : function(){ !_.isUndefined(this.method1) ? 1 : 2 } }",
             errors,
-            output: "obj = { method1: null, method2 : function(){ this.method1 !== undefined ? 1 : 2 } }",
+            output: "obj = { method1: undefined, method2 : function(){ this.method1 !== undefined ? 1 : 2 } }",
         },
         {
-            code: "obj = { method1: null, method2 : function(){ var val = _.isUndefined(this.method1) ? 1 : 2; var val2 = null; } }",
+            code: "obj = { method1: undefined, method2 : function(){ var val = _.isUndefined(this.method1) ? 1 : 2; var val2 = undefined; } }",
             errors,
-            output: "obj = { method1: null, method2 : function(){ var val = this.method1 === undefined ? 1 : 2; var val2 = null; } }",
+            output: "obj = { method1: undefined, method2 : function(){ var val = this.method1 === undefined ? 1 : 2; var val2 = undefined; } }",
         },
         {
-            code: "obj = { method1: null, method2 : function(){ var val = !!_.isUndefined(this.method1) ? 1 : 2; var val2 = null; } }",
+            code: "obj = { method1: undefined, method2 : function(){ var val = !!_.isUndefined(this.method1) ? 1 : 2; var val2 = undefined; } }",
             errors,
-            output: "obj = { method1: null, method2 : function(){ var val = this.method1 === undefined ? 1 : 2; var val2 = null; } }",
+            output: "obj = { method1: undefined, method2 : function(){ var val = this.method1 === undefined ? 1 : 2; var val2 = undefined; } }",
         },
         {
             code: "obj = { outer : { inner : function(arg){ return _.isUndefined(arg); } } }",
@@ -238,13 +238,86 @@ ruleTester.run("no-lodash-undefined", rule, {
         {
           code : "test4 = _.isUndefined(5) && 8 ? true : false;",
           errors,
-          output : "test4 = (5 === undefined) && 8 ? true : false;"
+          output : "test4 = 5 === undefined && 8 ? true : false;"
         },
         {
           code : "test4 = 8 && _.isUndefined(5) ? true : false;",
           errors,
-          output : "test4 = 8 && (5 === undefined) ? true : false;"
-        },
+          output : "test4 = 8 && 5 === undefined ? true : false;"
+		},
+		//Multiple errors on same line & weird mixes of logical & binary expressions
+		{
+			code: "_.isUndefined(5) === _.isUndefined(10) && _.isUndefined(15)",
+			errors: [
+				{
+					message: "Use native JavaScript to check for undefined",
+					type: "MemberExpression"
+				},
+				{
+					message: "Use native JavaScript to check for undefined",
+					type: "MemberExpression"
+				},
+				{
+					message: "Use native JavaScript to check for undefined",
+					type: "MemberExpression"
+				}
+			],
+			output: "(5 === undefined) === (10 === undefined) && 15 === undefined"
+		},
+		{
+			code: "_.isUndefined(undefined) || _.isUndefined(10) && _.isUndefined(15)",
+			errors: [
+				{
+					message: "Use native JavaScript to check for undefined",
+					type: "MemberExpression"
+				},
+				{
+					message: "Use native JavaScript to check for undefined",
+					type: "MemberExpression"
+				},
+				{
+					message: "Use native JavaScript to check for undefined",
+					type: "MemberExpression"
+				}
+			],
+			output: "undefined === undefined || 10 === undefined && 15 === undefined"
+		},
+		{
+			code: "_.isUndefined(undefined) || _.isUndefined(10) && _.isUndefined(undefined)",
+			errors: [
+				{
+					message: "Use native JavaScript to check for undefined",
+					type: "MemberExpression"
+				},
+				{
+					message: "Use native JavaScript to check for undefined",
+					type: "MemberExpression"
+				},
+				{
+					message: "Use native JavaScript to check for undefined",
+					type: "MemberExpression"
+				}
+			],
+			output: "undefined === undefined || 10 === undefined && undefined === undefined"
+		},
+		{
+			code: "_.isUndefined(undefined) || _.isUndefined(undefined) && _.isUndefined(10)",
+			errors: [
+				{
+					message: "Use native JavaScript to check for undefined",
+					type: "MemberExpression"
+				},
+				{
+					message: "Use native JavaScript to check for undefined",
+					type: "MemberExpression"
+				},
+				{
+					message: "Use native JavaScript to check for undefined",
+					type: "MemberExpression"
+				}
+			],
+			output: "undefined === undefined || undefined === undefined && 10 === undefined"
+		},
         //Confirm that if the user stores isUndefined in a variable, autofix will not be applied
         {
           code : "test = _.isUndefined",
