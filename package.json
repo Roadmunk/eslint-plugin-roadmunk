@@ -1,6 +1,6 @@
 {
   "name": "@roadmunk/eslint-plugin-roadmunk-custom",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Plugin to hold custom ESLint rules for Roadmunk",
   "keywords": [
     "eslint",
