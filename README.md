@@ -43,7 +43,9 @@ Then configure the rules you want to use under the rules section.
 
 ## Supported Rules
 
-* Fill in provided rules here
+`no-lodash-isundefined` : Prevents usage of `_.isUndefined` method
+
+`no-lodash-isnull` : Prevents usage of `_.isNull` method.
 
 
 
