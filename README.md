@@ -47,7 +47,4 @@ Then configure the rules you want to use under the rules section.
 
 `no-lodash-isnull` : Prevents usage of `_.isNull` method.
 
-
-
-
-
+`no-lodash-deprecated-functions` : Prevents usage of deprecated lodash functions.

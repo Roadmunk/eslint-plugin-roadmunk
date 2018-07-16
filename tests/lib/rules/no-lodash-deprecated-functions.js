@@ -8,7 +8,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule       = require("../../../lib/rules/no-lodash-deprecated");
+const rule       = require("../../../lib/rules/no-lodash-deprecated-functions");
 const RuleTester = require("eslint").RuleTester;
 
 //------------------------------------------------------------------------------
@@ -21,16 +21,22 @@ const errors = [{
 }];
 
 const ruleTester = new RuleTester();
-ruleTester.run("no-lodash-deprecated", rule, {
+ruleTester.run("no-lodash-deprecated-functions", rule, {
 	valid : [
 		"_.includes(a, list, of, arguments)",
-		"_.containsWithMoreThingsHere()"
+		"_.containsWithMoreThingsHere()",
+		"f = _.includes",
 	],
 	invalid : [
 		{
-				code : "_.contains([ 1 ], 1)",
-				errors,
-				output : "_.includes([ 1 ], 1)",
+			code : "_.contains([ 1 ], 1)",
+			errors,
+			output : "_.includes([ 1 ], 1)",
+		},
+		{
+			code : "f = _.contains",
+			errors,
+			output : "f = _.includes",
 		},
 	],
 });
