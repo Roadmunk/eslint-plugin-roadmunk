@@ -4,21 +4,16 @@
  */
 'use strict';
 
-//------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 // Requirements
-//------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 
 const rule       = require('../../../lib/rules/align-assign');
 const RuleTester = require('eslint').RuleTester;
 
-//------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 // Tests
-//------------------------------------------------------------------------------
-
-const errors = [{
-	message : 'align',
-	type    : 'ExpressionStatement'
-}];
+// ------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester();
 ruleTester.run('align-assign', rule, {
@@ -87,7 +82,7 @@ ruleTester.run('align-assign', rule, {
 			var b = 3;
 			var asdf = 4;
 			b = 4;`,
-			errors : [{},{},{}],
+			errors : [ {}, {}, {} ],
 			output : `
 			var a    = 1;
 			var b    = 3;
@@ -100,7 +95,7 @@ ruleTester.run('align-assign', rule, {
 			var b     = 3;
 			var asdf  = 4;
 			b         = 4;`,
-			errors : [{},{},{},{}],
+			errors : [ {}, {}, {}, {} ],
 			output : `
 			var a    = 1;
 			var b    = 3;
@@ -112,7 +107,7 @@ ruleTester.run('align-assign', rule, {
 			var a = 1;
 
 			a     = 2;`,
-			errors : [{}],
+			errors : [ {} ],
 			output : `
 			var a = 1;
 
@@ -122,7 +117,7 @@ ruleTester.run('align-assign', rule, {
 			code : `
 			a.b.c.d = 4;
 			a.b = 3;`,
-			errors : [{}],
+			errors : [ {} ],
 			output : `
 			a.b.c.d = 4;
 			a.b     = 3;`,
@@ -133,18 +128,19 @@ ruleTester.run('align-assign', rule, {
 				var a = 1;
 				a = 2;
 			}`,
-			errors : [{}],
+			errors : [ {} ],
 			output : `
 			function f() {
 				var a = 1;
 				a     = 2;
 			}`,
-		},{
+		},
+		{
 			code : `
 			{ var a = 1;
 				a     = 2;
 			}`,
-			errors : [{}],
+			errors : [ {} ],
 			output : `
 			{ var a = 1;
 				a = 2;
