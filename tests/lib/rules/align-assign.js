@@ -57,6 +57,21 @@ ruleTester.run('align-assign', rule, {
 			var a = 3;
 			a     = 4;
 		}`,
+		// If the alignment would happen between two lines that have different indentations,
+		// it shouldn't bother trying to align since the alignment would look different for different people
+		// eg:
+		// aligned for person with tab=4
+		/*
+		{ var a = 3;
+		    a   = 4;
+		}
+		 */
+		// exact same code for person with tab=2
+		/*
+		{ var a = 3;
+		  a   = 4;
+		}
+		*/
 		`
 		{ var a = 3;
 			a = 4;
