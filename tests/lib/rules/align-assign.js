@@ -74,6 +74,32 @@ ruleTester.run('align-assign', rule, {
 		`
 		a.b.c.d = 3;
 		a.b     = 5;`,
+		`
+		var a, b, c, d = 3;
+		var f          = 5;`,
+		`
+		var a, b = 4, c, d = 3;
+		var f    = 5;`,
+		`
+		var a, b, c, d;
+		var f = 5;`,
+		`
+		var a = 4;
+		b += 7;`,
+		`
+		var a  = 1;
+		var ab = function() {
+			return 1;
+		};`,
+		`
+		asdfasdfasdf = 3;
+		var a,
+			b,
+			c,
+			d = 3;`,
+		`
+		a[b = 'asdf'] = 5;
+		b             = 2;`,
 	],
 	invalid : [
 		{
@@ -145,6 +171,15 @@ ruleTester.run('align-assign', rule, {
 			{ var a = 1;
 				a = 2;
 			}`,
+		},
+		{
+			code : `
+			var a, b, c = 3, d;
+			var f = 5;`,
+			errors : [ {} ],
+			output : `
+			var a, b, c = 3, d;
+			var f       = 5;`,
 		},
 	],
 });
