@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "pretest": "npm run lint",
-    "test": "mocha tests --recursive"
+    "test": "mocha tests --recursive",
+    "test:inspect": "mocha tests --recursive --inspect-brk"
   },
   "dependencies": {
     "requireindex": "~1.1.0"

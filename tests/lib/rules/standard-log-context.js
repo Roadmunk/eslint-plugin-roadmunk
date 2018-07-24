@@ -86,9 +86,16 @@ ruleTester.run('standard-log-context', rule, {
 			code     : 'const a = { doit() { log.error("Clazz.doit is happening"); } };',
 			filename : 'Clazz.js',
 		},
-
 		{
 			code     : 'function stuff(a,b,c) { log.info(`Clazz.stuff is loggin ${1+1}`); }',
+			filename : 'Clazz.js',
+		},
+		{
+			code     : 'function stuff(a,b,c) { log.info(`Clazz.close.stuff is loggin ${1+1}`); }',
+			filename : 'Clazz.js',
+		},
+		{
+			code     : 'log.info(msg);',
 			filename : 'Clazz.js',
 		},
 	],
@@ -98,16 +105,31 @@ ruleTester.run('standard-log-context', rule, {
 			code     : 'log.info("wrong");',
 			filename : 'filename.js',
 			errors   : errors('filename'),
+			output   : 'log.info("filename wrong");',
 		},
 		{
 			code     : 'function foo() { log.info("lib/server/file") }',
 			filename : 'lib/server/file.js',
 			errors   : errors('lib/server/file.foo'),
+			output   : 'function foo() { log.info("lib/server/file.foo lib/server/file") }',
 		},
 		{
 			code     : 'log.info("wrongname");',
 			filename : 'wrong.name.js',
 			errors   : errors('wrong.name'),
+			output   : 'log.info("wrong.name wrongname");',
+		},
+		{
+			code     : 'log.info(`random text ${[1,2,3].join(" ")} is random ${1+2}`);',
+			filename : 'module.js',
+			errors   : errors('module'),
+			output   : 'log.info(`module random text ${[1,2,3].join(" ")} is random ${1+2}`);',
+		},
+		{
+			code     : 'log.info(1);',
+			filename : 'module.js',
+			errors   : errors('module'),
+			output   : 'log.info(\'module \' + 1);',
 		},
 	],
 });
