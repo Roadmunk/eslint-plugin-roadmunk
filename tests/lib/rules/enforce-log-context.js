@@ -8,7 +8,7 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-const rule = require('../../../lib/rules/standard-log-context');
+const rule = require('../../../lib/rules/enforce-log-context');
 const RuleTester = require('eslint').RuleTester;
 
 // ------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ const RuleTester = require('eslint').RuleTester;
 
 function errors(context) {
 	return [ {
-		message : `Ensure the context starts the log message {${context}}`,
+		message : `Ensure the some context starts the log message example: (${context})`,
 		type    : 'CallExpression',
 	} ];
 }
