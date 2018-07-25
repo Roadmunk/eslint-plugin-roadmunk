@@ -23,7 +23,7 @@ function errors(context) {
 }
 
 const ruleTester = new RuleTester({ parserOptions : { ecmaVersion : 2017 } });
-ruleTester.run('standard-log-context', rule, {
+ruleTester.run('enforce-log-context', rule, {
 
 	valid : [
 		{
