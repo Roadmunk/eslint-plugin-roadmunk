@@ -98,6 +98,28 @@ ruleTester.run('standard-log-context', rule, {
 			code     : 'log.info(msg);',
 			filename : 'Clazz.js',
 		},
+		{
+			code     : 'log.info(foo.bar.baz);',
+			filename : 'Clazz.js',
+		},
+		{
+			code     : 'log.info(_.get(obj, "some.path.to.var"), {});',
+			filename : 'Clazz.js',
+		},
+		{
+			code     : 'log.foo("this is not a log method");',
+			filename : 'Clazz.js',
+		},
+		{
+			filename : 'Foo.js',
+			code     : `JS.class('Foo', {
+				methods: {
+					bar : function (arg) {
+						log.info('Foo.bar called');
+					}
+				}
+			});`,
+		},
 	],
 
 	invalid : [
@@ -130,6 +152,24 @@ ruleTester.run('standard-log-context', rule, {
 			filename : 'module.js',
 			errors   : errors('module'),
 			output   : 'log.info(\'module \' + 1);',
+		},
+		{
+			code     : 'function module() { var foo = fs.readFile("asdf", err => { log.error("failed"); }); }',
+			filename : 'Clazz.js',
+			errors   : errors('Clazz.module'),
+			output   : 'function module() { var foo = fs.readFile("asdf", err => { log.error("Clazz.module failed"); }); }',
+		},
+		{
+			code     : 'const a = { doit() { log.error("is happening"); } };',
+			filename : 'Clazz.js',
+			errors   : errors('Clazz.doit'),
+			output   : 'const a = { doit() { log.error("Clazz.doit is happening"); } };',
+		},
+		{
+			code     : 'function stuff(a,b,c) { log.info(`is loggin ${1+1}`); }',
+			filename : 'Clazz.js',
+			errors   : errors('Clazz.stuff'),
+			output   : 'function stuff(a,b,c) { log.info(`Clazz.stuff is loggin ${1+1}`); }',
 		},
 	],
 });
