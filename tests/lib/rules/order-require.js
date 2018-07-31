@@ -35,26 +35,61 @@ ruleTester.run('order-require', rule, {
 	],
 
 	invalid : [
+		// 		{
+		// 			code :
+		// 			`
+		// var second = require('lib/test');
+		// var first = require('first');
+		// 			`,
+		// 			errors : [ {
+		// 				message : 'first was not required in the correct order',
+		// 				type    : 'CallExpression',
+		// 			} ],
+		// 			output :
+		// 			`
+		// var first = require('first');
+		// var second = require('lib/test');
+		// 			`,
+		// 		},
+		// 		{
+		// 			code :
+		// 			`
+		// var first = require('first');
+		// var third = require('common/lib/test');
+		// var second = require('lib/test');
+		// 			`,
+		// 			errors : [ {
+		// 				message : 'lib/test was not required in the correct order',
+		// 				type    : 'CallExpression',
+		// 			} ],
+		// 			output :
+		// 			`
+		// var first = require('first');
+		// var second = require('lib/test');
+		// var third = require('common/lib/test');
+		// 			`,
+		// 		},
 		{
-			code : `
-			var first = require('first');
-			var second = require('lib/test');
-			var third = require('../lib/test');
-			var fourth = require('common/lib/test');
-			var fifth = require('../common/lib/test');
-			var sixth = require('models/test');
-			var seventh = require('../models/test');
-			var eighth = require('common/models/test');
-			var nineth = require('../models/test');
-			var tenth = require('views/test');
+			code :
+			`
+var third = require('common/lib/test');
+var first = require('first');
+var second = require('lib/test');
 			`,
 			errors : [ {
-				message : '../models/test was not required in the correct order',
+				message : 'first was not required in the correct order',
 				type    : 'CallExpression',
-			}, {
-				message : 'views/test was not required in the correct order',
+			},
+			{
+				message : 'lib/test was not required in the correct order',
 				type    : 'CallExpression',
 			} ],
+			output :
+			`
+var first = require('first');
+var second = require('lib/test');
+var third = require('common/lib/test');
+			`,
 		},
 	],
 });
