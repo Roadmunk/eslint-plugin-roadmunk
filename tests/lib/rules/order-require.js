@@ -99,5 +99,41 @@ var BaseModel = require('models/BaseModel');
 var Msgbox    = require('views/Msgbox');
 			`,
 		},
+		{
+			code :
+			`
+var ko          = require('knockout');
+var $           = require('jquery');
+var BaseBinding = require('./BaseBinding');
+var JS          = require('@roadmunk/jsclass');
+			`,
+			errors : getErrorMessage('@roadmunk/jsclass'),
+			output :
+			`
+var ko          = require('knockout');
+var $           = require('jquery');
+var JS          = require('@roadmunk/jsclass');
+var BaseBinding = require('./BaseBinding');
+			`,
+		},
+		{
+			code :
+			`
+var ko      = require('knockout');
+var $       = require('jquery');
+var JS      = require('@roadmunk/jsclass');
+var Moment  = require('../lib/rm-moment');
+var Moments = require('lib/rm-moment');
+			`,
+			errors : getErrorMessage('lib/rm-moment'),
+			output :
+			`
+var ko      = require('knockout');
+var $       = require('jquery');
+var JS      = require('@roadmunk/jsclass');
+var Moments = require('lib/rm-moment');
+var Moment  = require('../lib/rm-moment');
+			`,
+		},
 	],
 });

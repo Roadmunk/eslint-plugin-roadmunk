@@ -31,4 +31,6 @@ var Msgbox    = require('views/Msgbox');
 
 ```
 
-Note that autofixing this rule currently only fixes one statement at a time.
+## Things to keep in mind
+- Autofixing logic of this rule currently only fixes one statement at a time.
+- Relative requires at placed at the bottom
