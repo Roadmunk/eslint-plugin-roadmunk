@@ -1,17 +1,20 @@
 # Ensures that the require statements are in a specific order (order-require)
 
-Please describe the origin of the rule here.
+Follows Roadmunk's coding convention of always having the require statements at the top of the file in a predictable order.
 
 
 ## Rule Details
-
-This rule aims to...
 
 Examples of **incorrect** code for this rule:
 
 ```js
 
-// fill me in
+var _         = require('lodash');
+var pluralize = require('pluralize');
+var JS        = require('@roadmunk/jsclass');
+var Moment    = require('lib/rm-moment');
+var Msgbox    = require('views/Msgbox');
+var BaseModel = require('models/BaseModel');
 
 ```
 
@@ -19,18 +22,13 @@ Examples of **correct** code for this rule:
 
 ```js
 
-// fill me in
+var _         = require('lodash');
+var pluralize = require('pluralize');
+var JS        = require('@roadmunk/jsclass');
+var Moment    = require('lib/rm-moment');
+var BaseModel = require('models/BaseModel');
+var Msgbox    = require('views/Msgbox');
 
 ```
 
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
-
-## When Not To Use It
-
-Give a short description of when it would be appropriate to turn off this rule.
-
-## Further Reading
-
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+Note that autofixing this rule currently only fixes one statement at a time.
