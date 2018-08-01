@@ -10,6 +10,12 @@
 const rule       = require('../../../lib/rules/order-require');
 const RuleTester = require('eslint').RuleTester;
 
+
+const getErrorMessage = moduleName => ([ {
+	message : `${moduleName} was not required in the correct order`,
+	type    : 'CallExpression',
+} ]);
+
 // ------------------------------------------------------------------------------
 // Tests
 // ------------------------------------------------------------------------------
@@ -44,16 +50,13 @@ ruleTester.run('order-require', rule, {
 
 	invalid : [
 		{
+			// Autofixing of this rule doesn't try to align code at all therefore the examples are unindented
 			code :
 			`
 var JS = require('@roadmunk/jsclass');
 var _  = require('lodash');
 			`,
-			errors : [ {
-				message : 'lodash was not required in the correct order',
-				type    : 'CallExpression',
-			},
-			],
+			errors : getErrorMessage('lodash'),
 			output :
 			`
 var _  = require('lodash');
@@ -67,11 +70,7 @@ var _  = require('lodash');
 var JS = require('@roadmunk/jsclass');
 var pluralize = require('pluralize');
 			`,
-			errors : [ {
-				message : 'pluralize was not required in the correct order',
-				type    : 'CallExpression',
-			},
-			],
+			errors : getErrorMessage('pluralize'),
 			output :
 			`
 var _  = require('lodash');
@@ -89,11 +88,7 @@ var Moment    = require('lib/rm-moment');
 var Msgbox    = require('views/Msgbox');
 var BaseModel = require('models/BaseModel');
 			`,
-			errors : [ {
-				message : 'models/BaseModel was not required in the correct order',
-				type    : 'CallExpression',
-			},
-			],
+			errors : getErrorMessage('models/BaseModel'),
 			output :
 			`
 var _         = require('lodash');
