@@ -174,5 +174,24 @@ var Msgbox             = require('views/Msgbox');
 var BaseMainModule     = require('./BaseMainModule');
 			`,
 		},
+		{
+			code :
+			`
+var Vue          = require('vue');
+var _            = require('lodash');
+var template     = require('text!./rm-select.html');
+var JS           = require('@roadmunk/jsclass');
+var RmFieldMixin = require('../mixins/rm-field');
+			`,
+			errors : getErrorMessage('@roadmunk/jsclass'),
+			output :
+			`
+var Vue          = require('vue');
+var _            = require('lodash');
+var JS           = require('@roadmunk/jsclass');
+var template     = require('text!./rm-select.html');
+var RmFieldMixin = require('../mixins/rm-field');
+			`,
+		},
 	],
 });
