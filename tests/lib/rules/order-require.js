@@ -135,5 +135,44 @@ var Moments = require('lib/rm-moment');
 var Moment  = require('../lib/rm-moment');
 			`,
 		},
+		{
+			code :
+			`
+var $                  = require('jquery');
+var router             = require('router');
+var _                  = require('lodash');
+var errorHandler       = require('errorHandler');
+var loadingScreen      = require('loadingScreen');
+var JS                 = require('@roadmunk/jsclass');
+var ObservableClass    = require('lib/ObservableClass');
+var log                = require('lib/log');
+var Logger             = require('lib/logger');
+var URLQuery           = require('lib/URLQuery');
+var env                = require('lib/env');
+var Moment             = require('lib/rm-moment');
+var User               = require('models/User');
+var BaseMainModule     = require('./BaseMainModule');
+var Msgbox             = require('views/Msgbox');
+			`,
+			errors : getErrorMessage('views/Msgbox'),
+			output :
+			`
+var $                  = require('jquery');
+var router             = require('router');
+var _                  = require('lodash');
+var errorHandler       = require('errorHandler');
+var loadingScreen      = require('loadingScreen');
+var JS                 = require('@roadmunk/jsclass');
+var ObservableClass    = require('lib/ObservableClass');
+var log                = require('lib/log');
+var Logger             = require('lib/logger');
+var URLQuery           = require('lib/URLQuery');
+var env                = require('lib/env');
+var Moment             = require('lib/rm-moment');
+var User               = require('models/User');
+var Msgbox             = require('views/Msgbox');
+var BaseMainModule     = require('./BaseMainModule');
+			`,
+		},
 	],
 });
