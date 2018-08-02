@@ -193,5 +193,19 @@ var template     = require('text!./rm-select.html');
 var RmFieldMixin = require('../mixins/rm-field');
 			`,
 		},
+		// Example below requires from a directory the plugin doesn't know about (sandbox) so it should go to the bottom
+		{
+			code :
+			`
+var SandboxBaseVM = require('sandbox/SandboxBaseVM');
+var JS            = require('@roadmunk/jsclass');
+			`,
+			errors : getErrorMessage('@roadmunk/jsclass'),
+			output :
+			`
+var JS            = require('@roadmunk/jsclass');
+var SandboxBaseVM = require('sandbox/SandboxBaseVM');
+			`,
+		},
 	],
 });
