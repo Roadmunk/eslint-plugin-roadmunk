@@ -139,18 +139,6 @@ var Moment  = require('../lib/rm-moment');
 			code :
 			`
 var $                  = require('jquery');
-var router             = require('router');
-var _                  = require('lodash');
-var errorHandler       = require('errorHandler');
-var loadingScreen      = require('loadingScreen');
-var JS                 = require('@roadmunk/jsclass');
-var ObservableClass    = require('lib/ObservableClass');
-var log                = require('lib/log');
-var Logger             = require('lib/logger');
-var URLQuery           = require('lib/URLQuery');
-var env                = require('lib/env');
-var Moment             = require('lib/rm-moment');
-var User               = require('models/User');
 var BaseMainModule     = require('./BaseMainModule');
 var Msgbox             = require('views/Msgbox');
 			`,
@@ -158,18 +146,6 @@ var Msgbox             = require('views/Msgbox');
 			output :
 			`
 var $                  = require('jquery');
-var router             = require('router');
-var _                  = require('lodash');
-var errorHandler       = require('errorHandler');
-var loadingScreen      = require('loadingScreen');
-var JS                 = require('@roadmunk/jsclass');
-var ObservableClass    = require('lib/ObservableClass');
-var log                = require('lib/log');
-var Logger             = require('lib/logger');
-var URLQuery           = require('lib/URLQuery');
-var env                = require('lib/env');
-var Moment             = require('lib/rm-moment');
-var User               = require('models/User');
 var Msgbox             = require('views/Msgbox');
 var BaseMainModule     = require('./BaseMainModule');
 			`,
@@ -205,6 +181,41 @@ var JS            = require('@roadmunk/jsclass');
 			`
 var JS            = require('@roadmunk/jsclass');
 var SandboxBaseVM = require('sandbox/SandboxBaseVM');
+			`,
+		},
+		// Require statements inside functions just be left alone
+		{
+			code :
+			`
+var JS            = require('@roadmunk/jsclass');
+
+var test = function() {
+	var ko         = require('knockout');
+	var intrepidVM = require('views/IntrepidVM');
+}
+			`,
+			errors : [],
+			output :
+			`
+var JS            = require('@roadmunk/jsclass');
+
+var test = function() {
+	var ko         = require('knockout');
+	var intrepidVM = require('views/IntrepidVM');
+}
+			`,
+		},
+		{
+			code :
+			`
+var JS            = require('@roadmunk/jsclass');
+var SandboxBaseVM = require('sandbox').Test;
+			`,
+			errors : getErrorMessage('sandbox'),
+			output :
+			`
+var SandboxBaseVM = require('sandbox').Test;
+var JS            = require('@roadmunk/jsclass');
 			`,
 		},
 	],
