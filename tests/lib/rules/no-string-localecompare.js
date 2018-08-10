@@ -83,6 +83,21 @@ ruleTester.run('no-string-localecompare', rule, {
 			errors : [ errors[0] ],
 		},
 		{
+			code   : 'string1.localeCompare(null, {sensitivity : \'base\' });',
+			output : '_.areEqualCaseless(string1, null);',
+			errors : [ errors[0] ],
+		},
+		{
+			code   : 'string1.localeCompare(undefined, {sensitivity : \'base\' });',
+			output : '_.areEqualCaseless(string1, undefined);',
+			errors : [ errors[0] ],
+		},
+		{
+			code   : 'string1.localeCompare(string2.trim(), {sensitivity : \'base\' });',
+			output : '_.areEqualCaseless(string1, string2.trim());',
+			errors : [ errors[0] ],
+		},
+		{
 			code   : 'const func = arg => arg.name.toLowerCase() == thing.toLowerCase();',
 			output : 'const func = arg => _.areEqualCaseless(arg.name, thing);',
 			errors : [ errors[1] ],
@@ -92,21 +107,6 @@ ruleTester.run('no-string-localecompare', rule, {
 			output : 'const value = _.areEqualCaseless(arg.name, thing);',
 			errors : [ errors[2] ],
 		},
-		/*
-		{
-			code   : `!_.some(this.fieldMappingsToShow, { externalFieldName : option.id }) // field is not already added
-                                        && !_.some(this.wizard.roadmunkFields, field => // field is not hidden
-                                                this.hiddenMappings.includes(field.id)
-	                                              && (field.name.toLowerCase() === option.name.toLowerCase() || field.id.toLowerCase() === option.name.toLowerCase())
-                                        )`,
-			output : `!_.some(this.fieldMappingsToShow, { externalFieldName : option.id }) // field is not already added
-                                        && !_.some(this.wizard.roadmunkFields, field => // field is not hidden
-                                                this.hiddenMappings.includes(field.id)
-																								&& (_.areEqualCaseless(field.name, option.name) || _.areEqualCaseless(field.id, option.name))
-                                        )`,
-			errors : [ errors[0] ],
-		},
-		*/
 		{
 			code : `const usedBy = _([ _.get(this.usageCountMetadata, 'roadmaps', []), _.get(this.usageCountMetadata, 'masters', []) ])
 										.map(tables => tables.sort((a, b) => a.title.localeCompare(b.title, { sensitivity : 'base' })))
