@@ -44,6 +44,9 @@ ruleTester.run('no-string-localecompare', rule, {
 		{ code : 'const value = arg.name.toLowerCase() <= thing.toLowerCase();' },
 		{ code : 'const value = arg.name.toLowerCase() > thing.toLowerCase();' },
 		{ code : 'const value = arg.name.toLowerCase() < thing.toLowerCase();' },
+		// SHOULDDO: these cases are 'invalid' but since someone passed in the language and _.areEqualCaseless doesn't support language yet
+		{ code : 'string1.localeCompare(Foo.Bar.Baz.Enum.VALUE, null, {sensitivity : \'base\' });' },
+		{ code : 'string1.localeCompare(Foo.Bar.Baz.Enum.VALUE, "en", {sensitivity : \'base\' });' },
 	],
 
 	invalid : [
