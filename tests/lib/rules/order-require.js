@@ -218,5 +218,21 @@ var SandboxBaseVM = require('sandbox').Test;
 var JS            = require('@roadmunk/jsclass');
 			`,
 		},
+		// Test cases involving comments
+		{
+
+			// Autofixing of this rule doesn't try to align code at all therefore the examples are unindented
+			code :
+			`
+var JS = require('@roadmunk/jsclass'); // comment 1
+var _  = require('lodash'); // comment 2
+			`,
+			errors : getErrorMessage('lodash'),
+			output :
+			`
+var _  = require('lodash'); // comment 2
+var JS = require('@roadmunk/jsclass'); // comment 1
+			`,
+		},
 	],
 });
