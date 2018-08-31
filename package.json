@@ -16,6 +16,7 @@
     "test": "mocha tests --recursive"
   },
   "dependencies": {
+    "lodash": "^4.17.10",
     "requireindex": "~1.1.0"
   },
   "devDependencies": {
