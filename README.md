@@ -49,4 +49,6 @@ Then configure the rules you want to use under the rules section.
 
 `no-align-assign` : Ensure that assignment statements are aligned
 
+`order-require` : Ensures that require statements in a file are in the correct order.
+
 `assert-length` : Uses the correct assertion method to check for length of an array
