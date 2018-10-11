@@ -1,17 +1,24 @@
 # Enforces a specified max length on log messages (log-message-length)
 
-Please describe the origin of the rule here.
+Log messages get truncated at 50 characters therefore this rule catches scenarios that go over that limit.
+There is no autofixing logic for this rule.
 
 
 ## Rule Details
 
-This rule aims to...
+This rule currently only checks the methods 
+
+- log.info
+- log.debug
+- log.warn
+- log.error
+- log.command
 
 Examples of **incorrect** code for this rule:
 
 ```js
 
-// fill me in
+log.debug('This is a string that is long enough that it goes over the limit');
 
 ```
 
@@ -19,18 +26,6 @@ Examples of **correct** code for this rule:
 
 ```js
 
-// fill me in
+log.debug('Short log message');
 
 ```
-
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
-
-## When Not To Use It
-
-Give a short description of when it would be appropriate to turn off this rule.
-
-## Further Reading
-
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
