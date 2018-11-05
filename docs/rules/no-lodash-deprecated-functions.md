@@ -14,7 +14,7 @@ A full list of all deprecated lodash functions is as follows:
 ```
 first     -> head
 object    -> zipObject
-tail      -> rest
+rest      -> tail
 unique    -> uniq
 all       -> every
 any       -> some
@@ -27,11 +27,12 @@ foldl     -> reduce
 foldr     -> reduceRight
 include   -> includes
 inject    -> reduce
+pluck     -> map
 select    -> filter
 backflow  -> flowRight
 compose   -> flowRight
 eq        -> isEqual
 extend    -> assign
 methods   -> functions
-iteratee  -> callback
+callback  -> iteratee
 ```
