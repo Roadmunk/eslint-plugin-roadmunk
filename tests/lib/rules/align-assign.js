@@ -84,8 +84,14 @@ ruleTester.run('align-assign', rule, {
 		var a, b, c, d;
 		var f = 5;`,
 		`
-		var a = 4;
-		b += 7;`,
+		var a  = 4;
+		b     += 7;`,
+		`
+		asdf += 4;
+		b     = 7;`,
+		`
+		var a    = 4;
+		b     >>>= 7;`,
 		`
 		var a  = 1;
 		var ab = function() {
@@ -100,6 +106,24 @@ ruleTester.run('align-assign', rule, {
 		`
 		a[b = 'asdf'] = 5;
 		b             = 2;`,
+		`
+		thisVariableHas27Characters = 2;
+		b = 3;
+		`,
+		{
+			code : `
+			thisVariableHas22Chars = 2;
+			b                      = 3;
+			`,
+			options : [ { maxSpaces : 40 } ],
+		},
+		{
+			code : `
+			thisVariableHas22Chars = 2;
+			b = 3;
+			`,
+			options : [ { maxSpaces : 20 } ],
+		},
 	],
 	invalid : [
 		{
@@ -180,6 +204,24 @@ ruleTester.run('align-assign', rule, {
 			output : `
 			var a, b, c = 3, d;
 			var f       = 5;`,
+		},
+		{
+			code : `
+			thisVariableHas27Characters += 2;
+			b                            = 3;`,
+			errors : [ {} ],
+			output : `
+			thisVariableHas27Characters += 2;
+			b = 3;`,
+		},
+		{
+			code : `
+			var a = 2;
+			b    += 3;`,
+			errors : [ {}, {} ],
+			output : `
+			var a  = 2;
+			b     += 3;`,
 		},
 	],
 });
