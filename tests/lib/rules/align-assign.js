@@ -8,8 +8,8 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-const rule       = require('../../../lib/rules/align-assign');
 const RuleTester = require('eslint').RuleTester;
+const rule       = require('../../../lib/rules/align-assign');
 
 // ------------------------------------------------------------------------------
 // Tests

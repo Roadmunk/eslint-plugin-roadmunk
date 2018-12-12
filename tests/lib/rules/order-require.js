@@ -7,8 +7,8 @@
 // ------------------------------------------------------------------------------
 // Requirements
 // ------------------------------------------------------------------------------
-const rule       = require('../../../lib/rules/order-require');
 const RuleTester = require('eslint').RuleTester;
+const rule       = require('../../../lib/rules/order-require');
 
 
 const getErrorMessage = moduleName => ([ {

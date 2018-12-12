@@ -8,8 +8,8 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-const rule       = require('../../../lib/rules/log-message-length');
 const RuleTester = require('eslint').RuleTester;
+const rule       = require('../../../lib/rules/log-message-length');
 
 // ------------------------------------------------------------------------------
 // Tests

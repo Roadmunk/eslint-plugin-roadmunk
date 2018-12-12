@@ -3,7 +3,6 @@
 Log messages get truncated at 50 characters therefore this rule catches scenarios that go over that limit.
 There is no autofixing logic for this rule.
 
-
 ## Rule Details
 
 This rule currently only checks the methods 

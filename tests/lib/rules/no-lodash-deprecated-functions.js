@@ -8,8 +8,8 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-const rule       = require('../../../lib/rules/no-lodash-deprecated-functions');
 const RuleTester = require('eslint').RuleTester;
+const rule       = require('../../../lib/rules/no-lodash-deprecated-functions');
 
 // ------------------------------------------------------------------------------
 // Tests
