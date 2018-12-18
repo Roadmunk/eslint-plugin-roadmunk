@@ -12,6 +12,7 @@ This rule currently only checks the methods
 - log.warn
 - log.error
 - log.command
+- log.sys
 
 Examples of **incorrect** code for this rule:
 
