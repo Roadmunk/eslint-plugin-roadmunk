@@ -53,5 +53,6 @@ Then configure the rules you want to use under the rules section.
 
 `assert-length` : Uses the correct assertion method to check for length of an array
 
-`no-lodash-deprecated-functions` : Prevents usage of deprecated lodash functions.
+`log-message-length` : Enforces a specified max length on log messages
 
+`no-lodash-deprecated-functions` : Prevents usage of deprecated lodash functions.
