@@ -13,6 +13,7 @@ This rule currently only checks the methods
 - log.error
 - log.command
 - log.sys
+- log.user
 
 Examples of **incorrect** code for this rule:
 
