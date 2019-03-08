@@ -9,16 +9,17 @@
 // ------------------------------------------------------------------------------
 
 const RuleTester = require('eslint').RuleTester;
+const _          = require('lodash');
 const rule 	     = require('../../../lib/rules/no-require-views');
 
 // ------------------------------------------------------------------------------
 // Tests
 // ------------------------------------------------------------------------------
 
-const errors = [ {
-	message : 'Prevent importing \'views\' packages',
+const error = {
+	message : 'Use an on-demand require statement to import views',
 	type   	: 'CallExpression',
-} ];
+};
 
 const ruleTester = new RuleTester();
 ruleTester.run('no-require-views', rule, {
@@ -48,7 +49,7 @@ require([ 'views/test' ], function() { return true; });
 			`
 var view = require('../views/models/test');
 			`,
-			errors,
+			errors : _.times(1, _.constant(error)),
 		},
 		{
 			code :
@@ -61,7 +62,7 @@ var view = require('../views/models/test');
 var models1 = require('models/test');
 var models2 = require('../models/test');
 			`,
-			errors,
+			errors : _.times(1, _.constant(error)),
 		},
 		// Should only fail on the require method at the top
 		{
@@ -77,7 +78,7 @@ var models2 = require('../models/test');
 
 require([ 'views/test' ], function() { return true; });
 			`,
-			errors,
+			errors : _.times(1, _.constant(error)),
 		},
 		// Should fail on the require method at the top and the require within the function only
 		{
@@ -100,16 +101,7 @@ var test = function() {
     return 0;
 }
 			`,
-			errors : [
-				{
-					message : 'Prevent importing \'views\' packages',
-					type   	: 'CallExpression',
-				},
-				{
-					message : 'Prevent importing \'views\' packages',
-					type   	: 'CallExpression',
-				},
-			],
+			errors : _.times(2, _.constant(error)),
 		},
 		{
 			code :
@@ -124,20 +116,7 @@ var view3 = require('../../../views/models/test3');
 var models1 = require('models/test');
 var models2 = require('../models/test');
 			`,
-			errors : [
-				{
-					message : 'Prevent importing \'views\' packages',
-					type   	: 'CallExpression',
-				},
-				{
-					message : 'Prevent importing \'views\' packages',
-					type   	: 'CallExpression',
-				},
-				{
-					message : 'Prevent importing \'views\' packages',
-					type   	: 'CallExpression',
-				},
-			],
+			errors : _.times(3, _.constant(error)),
 		},
 	],
 });
