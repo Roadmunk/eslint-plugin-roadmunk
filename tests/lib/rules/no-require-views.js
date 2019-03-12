@@ -10,7 +10,7 @@
 
 const RuleTester = require('eslint').RuleTester;
 const _          = require('lodash');
-const rule 	     = require('../../../lib/rules/no-require-views');
+const rule       = require('../../../lib/rules/no-require-views');
 
 // ------------------------------------------------------------------------------
 // Tests
