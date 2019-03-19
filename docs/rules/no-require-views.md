@@ -1,6 +1,6 @@
 # Prevent requiring `views/` packages in JS code (no-require-views)
 
-This rule aims to prevent importing packages from within the `views/`, directory. We should instead be only requiring the packages we specifically need, instead of entire views (unless we need the entire view). 
+This rule aims to prevent importing packages from within the `views/`, directory. We should instead be only requiring the packages we specifically need, instead of entire views (unless we need the entire view).
 
 ## Rule Details
 
