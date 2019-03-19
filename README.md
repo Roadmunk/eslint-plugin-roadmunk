@@ -56,3 +56,5 @@ Then configure the rules you want to use under the rules section.
 `log-message-length` : Enforces a specified max length on log messages
 
 `no-lodash-deprecated-functions` : Prevents usage of deprecated lodash functions.
+
+`no-require-views` : Warns about requiring packages from the `views/` folder.
