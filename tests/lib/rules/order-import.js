@@ -50,7 +50,6 @@ ruleTester.run('order-require', rule, {
 
 	invalid : [
 		{
-			// Autofixing of this rule doesn't try to align code at all therefore the examples are unindented
 			code :
 			`
 import JS from '@roadmunk/jsclass';
@@ -198,8 +197,6 @@ import JS from '@roadmunk/jsclass';
 		},
 		// Test cases involving comments
 		{
-
-			// Autofixing of this rule doesn't try to align code at all therefore the examples are unindented
 			code :
 			`
 import JS from '@roadmunk/jsclass'; // comment 1
