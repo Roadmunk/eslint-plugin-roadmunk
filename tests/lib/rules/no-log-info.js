@@ -4,19 +4,11 @@
  */
 'use strict';
 
-// ------------------------------------------------------------------------------
-// Requirements
-// ------------------------------------------------------------------------------
-
 const RuleTester = require('eslint').RuleTester;
 const rule       = require('../../../lib/rules/no-log-info');
 
-// ------------------------------------------------------------------------------
-// Tests
-// ------------------------------------------------------------------------------
-
 const errors = [ {
-	message : 'info a deprecated log method. Use user or sys instead',
+	message : 'info is a deprecated log method. Use user or sys instead',
 	type    : 'CallExpression',
 } ];
 
