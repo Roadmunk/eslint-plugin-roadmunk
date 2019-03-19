@@ -1,4 +1,4 @@
-# Prevent requiring `views/` packages in JS code (no-require-views)
+# Prefer `_.isEmpty` for checking empty collections
 
 Enforces the usage of `_.isEmpty` by checking for comparisons of `\.length` to `0`
 
@@ -11,6 +11,8 @@ array.length === 0
 array.length !== 0
 array.length > 0
 0 < array.length
+array.length >= 1
+1 <= array.length
 Object.keys(object).length === 0
 ```
 

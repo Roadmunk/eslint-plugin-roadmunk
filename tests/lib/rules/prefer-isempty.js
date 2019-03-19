@@ -30,6 +30,10 @@ ruleTester.run('prefer-isempty', rule, {
 		'array.length > 1',
 		'0 > array.length',
 		'1 < array.length',
+		'array.length >= 0',
+		'0 <= array.length',
+		'array.length >= 2',
+		'2 <= array.length',
 	],
 
 	invalid : [
@@ -50,6 +54,16 @@ ruleTester.run('prefer-isempty', rule, {
 		},
 		{
 			code   : '0 < array.length',
+			errors,
+			output : '!_.isEmpty(array)',
+		},
+		{
+			code   : 'array.length >= 1',
+			errors,
+			output : '!_.isEmpty(array)',
+		},
+		{
+			code   : '1 <= array.length',
 			errors,
 			output : '!_.isEmpty(array)',
 		},
