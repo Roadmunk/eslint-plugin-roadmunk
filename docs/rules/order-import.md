@@ -33,7 +33,7 @@ import Msgbox from 'views/Msgbox';
 
 ## Things to keep in mind
 - Autofixing logic of this rule currently only fixes one statement at a time.
-- Relative requires at placed at the bottom
+- Relative requires are placed at the bottom
 
  ## Expected Order
  Expect the modules to be ordered as listed below:
