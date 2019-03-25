@@ -19,9 +19,9 @@ const importErrors  = generateErrorsObject(false);
 
 ruleTester.run('no-require-path-js', rule, {
 	valid : [
-		"var CustomProperty = require('models/CustomProperty.List');",
-		"var template = require('./template.html');",
-		"var CustomProperty = require('models/CustomProperty.List.ejs');",
+		"const CustomProperty = require('models/CustomProperty.List');",
+		"const template = require('./template.html');",
+		"const CustomProperty = require('models/CustomProperty.List.ejs');",
 		"require('models/CustomProperty.List');",
 		"require('./template.html');",
 		"require('models/CustomProperty.List.ejs');",
@@ -39,8 +39,8 @@ ruleTester.run('no-require-path-js', rule, {
 			errors : requireErrors,
 		},
 		{
-			code   : "var Account = require('./models/Account.js');",
-			output : "var Account = require('./models/Account');",
+			code   : "const Account = require('./models/Account.js');",
+			output : "const Account = require('./models/Account');",
 			errors : requireErrors,
 		},
 		{
