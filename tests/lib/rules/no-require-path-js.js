@@ -30,6 +30,8 @@ ruleTester.run('no-require-path-js', rule, {
 		"import CustomProperty from 'models/CustomProperty.List.ejs';",
 		"import CustomProperty from 'models/CustomProperty.List';",
 		"require([ 'models/CustomProperty', 'models/Account' ], (customProperty, account) => false );",
+		"(function(moduleName){ require([ 'moduleName' ], module => module) })",
+		'(function(moduleName){ require([ moduleName ], module => module) })',
 	],
 
 	invalid : [
@@ -56,6 +58,11 @@ ruleTester.run('no-require-path-js', rule, {
 		{
 			code   : "require(['./models/Account.js', './models/User'], foo => bar);",
 			output : "require(['./models/Account', './models/User'], foo => bar);",
+			errors : requireErrors,
+		},
+		{
+			code   : "require([ variable, './models/Account.js', './models/User', './models/Test.js'], foo => bar);",
+			output : "require([ variable, './models/Account', './models/User', './models/Test'], foo => bar);",
 			errors : requireErrors,
 		},
 		{
