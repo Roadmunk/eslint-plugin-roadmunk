@@ -55,7 +55,7 @@ ruleTester.run('no-require-path-js', rule, {
 		},
 		{
 			code   : "require(['./models/Account.js', './models/User'], foo => bar);",
-			output : "require(['./models/Account','./models/User'], foo => bar);",
+			output : "require(['./models/Account', './models/User'], foo => bar);",
 			errors : requireErrors,
 		},
 		{
