@@ -1,6 +1,6 @@
 {
   "name": "@roadmunk/eslint-plugin-roadmunk-custom",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "description": "Plugin to hold custom ESLint rules for Roadmunk",
   "keywords": [
     "eslint",
@@ -21,7 +21,7 @@
     "requireindex": "~1.1.0"
   },
   "devDependencies": {
-    "@roadmunk/eslint-config-roadmunk": "^3.16.0",
+    "@roadmunk/eslint-config-roadmunk": "^3.17.2",
     "mocha": "^7.1.1",
     "eslint": "^6.0.0"
   },
