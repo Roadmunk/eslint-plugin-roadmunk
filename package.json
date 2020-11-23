@@ -31,8 +31,8 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Roadmunk/eslint-plugin-roadmunk"
+    "url": "https://gitlab.com/roadmunk/eslint-plugin-roadmunk"
   },
-  "homepage": "https://github.com/Roadmunk/eslint-plugin-roadmunk#readme",
-  "bugs": "https://github.com/Roadmunk/eslint-plugin-roadmunk/issues"
+  "homepage": "https://gitlab.com/roadmunk/eslint-plugin-roadmunk#readme",
+  "bugs": "https://gitlab.com/roadmunk/eslint-plugin-roadmunk/issues"
 }
